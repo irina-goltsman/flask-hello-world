@@ -1,5 +1,5 @@
 # Flask Example
-### demo on Flask&HTML (MIPT 2019)
+### demo on Flask&SQLAlchemy (MIPT 2019)
 
 
 ### Flask official tutorial:
