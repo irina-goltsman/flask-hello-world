@@ -2,7 +2,6 @@
 import argparse
 
 import app
-from app import views
 
 
 def parse_args():
