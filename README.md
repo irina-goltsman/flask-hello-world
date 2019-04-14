@@ -18,19 +18,19 @@ python3 run.py --debug
 curl "http://127.0.0.1:5000"
 >"Hello World"
 
-curl "http://127.0.0.1:5000/add_user?nickname=Irina"
+curl -i -H "Content-Type: application/json" -X POST -d '{"nickname":"Irina"}' http://127.0.0.1:5000/add_user
 > "OK"
 
-curl http://127.0.0.1:5000/add_user?nickname=Pavel
+curl -i -H "Content-Type: application/json" -X POST -d '{"nickname":"Pavel"}' http://127.0.0.1:5000/add_user
 > "OK"
 
-curl "http://127.0.0.1:5000/add_post?nickname=Irina&text=HelloWorld"
+curl -i -H "Content-Type: application/json" -X POST -d '{"nickname":"Irina","text":"Hello World!"}' http://127.0.0.1:5000/add_post
 > "OK"
 
-curl "http://127.0.0.1:5000/add_post?nickname=Irina&text=HelloWorld2"
+curl -i -H "Content-Type: application/json" -X POST -d '{"nickname":"Irina","text":"Hello World 2!"}' http://127.0.0.1:5000/add_post
 > "OK"
 
-curl "http://127.0.0.1:5000/add_post?nickname=NoSuchUser&text=HelloWorld"
+curl -i -H "Content-Type: application/json" -X POST -d '{"nickname":"NoSuchUser","text":"Hello World"}' http://127.0.0.1:5000/add_post
 ```
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <title>400 Bad Request</title>
@@ -41,9 +41,9 @@ curl "http://127.0.0.1:5000/add_post?nickname=NoSuchUser&text=HelloWorld"
 curl http://127.0.0.1:5000/get_user_posts?nickname=Pavel
 > []
 
-curl http://127.0.0.1:5000/get_user_posts?nickname=Pavel
+curl http://127.0.0.1:5000/get_user_posts?nickname=Irina
 > [
-    "HelloWorld", 
-    "HelloWorld2"
+    "Hello World!", 
+    "Hello World 2!"
   ]
 ```

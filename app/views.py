@@ -11,11 +11,14 @@ def index():
     return flask.jsonify("Hello World")
 
 
-@app.route('/add_user', methods=['GET'])
+@app.route('/add_user', methods=['POST'])
 def add_user():
-    nickname = flask.request.args.get("nickname", None)
+    if not flask.request.json:
+        flask.abort(400)
+
+    nickname = flask.request.json.get("nickname", None)
     try:
-        is_admin = bool(flask.request.args.get("is_admin", "False"))
+        is_admin = bool(flask.request.json.get("is_admin", "False"))
     except Exception:
         flask.abort(400)
 
@@ -37,10 +40,13 @@ def add_user_impl(nickname, is_admin=False):
     return False
 
 
-@app.route('/add_post', methods=['GET'])
+@app.route('/add_post', methods=['POST'])
 def add_post():
-    nickname = flask.request.args.get("nickname", None)
-    text = flask.request.args.get("text", None)
+    if not flask.request.json:
+        flask.abort(400)
+
+    nickname = flask.request.json.get("nickname", None)
+    text = flask.request.json.get("text", None)
 
     if not nickname or not text:
         flask.abort(400)
